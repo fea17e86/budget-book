@@ -1,16 +1,19 @@
 /*
  * Transaction
  * ===========
- *  date     : Date
- *  amount   : Number
- *  type     : String (Transactions.type)
- *  sender   : String (Account._id)
- *  receiver : String (Account._id || Proxy._id)
- *  status   : String (Transactions.status)
- *  notes    : String
- *  tags     : String[]
- *  _type    : 'transaction' (Model)
- *  _id      : String (nedb)
+ *  date        : Date
+ *  amount      : Number
+ *  type        : String (Transactions.type)
+ *  account     : String (Account._id)
+ *  counterpart {
+ *    _id       : String (Account._id || Proxy._id)
+ *    type      : 'Accounts.modelType' || Proxy.modelType
+ *  }
+ *  status      : String (Transactions.status)
+ *  notes       : String
+ *  tags        : String[]
+ *  _type       : 'transaction' (Model)
+ *  _id         : String (nedb)
  */
 
 var config = require('../config'),

@@ -25,7 +25,7 @@ Accounts.type.list = [Accounts.type.bank, Accounts.type.cash, Accounts.type.cred
 Accounts.transactions = function (account, callback) {
   if (account) {
     var id = account._id ? account._id : proxy;
-    Transactions.get({ $or: [{ sender: id }, { receiver: id }] }, callback);
+    Transactions.get({ $or: [{ account: id }, { 'counterpart._id': id }] }, callback);
   }
 };
 

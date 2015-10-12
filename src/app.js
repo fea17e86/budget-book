@@ -31,7 +31,7 @@ function initAccounts (user, callback) {
 function createReceiveAccounts (user) {
   var callback = function (err, accounts) {
     if (accounts && (!Array.isArray(accounts) || accounts.length > 0)) {
-      console.log(user.name, 'accounts', accounts);
+      console.log(user.name + '.accounts', accounts);
     } else {
       initAccounts(user, callback);
     }

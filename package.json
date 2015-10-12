@@ -5,7 +5,10 @@
   "main": "src/app.js",
   "dependencies": {
     "nedb": "^1.2.1",
-    "node-schema-object": "^0.9.3"
+    "node-jsx": "^0.13.3",
+    "node-schema-object": "^0.9.3",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0"
   },
   "devDependencies": {},
   "scripts": {

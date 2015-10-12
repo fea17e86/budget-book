@@ -15,7 +15,7 @@ var Proxies = new Model('proxy', config.database.proxies);
 Proxies.transactions = function (proxy, callback) {
   if (proxy) {
     var id = proxy._id ? proxy._id : proxy;
-    Transactions.get({ $or: [{ sender: id }, { receiver: id }] }, callback);
+    Transactions.get({ 'counterpart._id' : id }, callback);
   }
 };
 
