@@ -82,7 +82,7 @@ Model.prototype.remove = function (object, callback) {
   //console.log(this.modelType, 'remove', object, this.db != undefined);
   if (object) {
     if (this.db) {
-      this.db.find({ _id: object.id }, {}, callback);
+      this.db.remove(object, {}, callback);
     } else {
       if (callback) { callback('No Datastore configured!'); }
       else { throw 'No Datastore configured!'; }

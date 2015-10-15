@@ -1,3 +1,7 @@
-<h1>{{message}}</h1>
-<h2>{{error.status}}</h2>
-<pre>{{error.stack}}</pre>
+<div class="alert alert-danger" role="alert"><h3>{{message}}</h3></div>
+{{#with error}}
+  <p class="bg-danger">
+    <h2>{{error.status}}</h2>
+    <pre>{{error.stack}}</pre>
+  </p>
+{{/with}}

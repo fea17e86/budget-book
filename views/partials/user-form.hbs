@@ -1,0 +1,24 @@
+
+
+<h2 class="sub-header">{{#if selected}}Update {{selected.name}}{{else}}New User{{/if}}</h2>
+<form name="userForm" action="/users/{{#if selected}}update{{else}}new{{/if}}" method="post">
+  {{#if selected}}
+    <input type="hidden" name="id" value="{{selected._id}}">
+  {{/if}}
+  <div class="form-group">
+    <label for="inputName">Name</label>
+    <input type="text" name="name" class="form-control" id="inputName"
+          placeholder="Name" value="{{#if selected}}{{selected.name}}{{/if}}">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+  {{#if selected}}
+    <script>
+      function deleteUser () {
+        var form = document.forms['userForm'];
+        form.action = '/users/remove';
+        form.submit();
+      }
+    </script>
+    <button type="button" class="btn btn-danger" onclick="deleteUser();">Delete</button>
+  {{/if}}
+</form>

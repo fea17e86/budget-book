@@ -1,1 +1,29 @@
-User list: {{users}}
+<h2 class="sub-header">User List</h2>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Balance</th>
+        <th>Accounts</th>
+        <th>Transactions</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#if users}}
+      {{#each users}}
+        <tr class="{{#selectedClass _id}}{{/selectedClass}}">
+          <td>{{@index}}</td>
+          <td><a href="/users/{{_id}}">{{name}}</a></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+      {{/each}}
+      {{else}}
+        <tr><td colspan="5" class="bg-warning">No users created yet</td></tr>
+    {{/if}}
+    </tbody>
+  </table>
+</div>
