@@ -29,12 +29,29 @@ Model.prototype.init = function (dbUrl) {
   }
 };
 
-Model.prototype.set = function (object, callback) {
-  //console.log(this.modelType, 'set', object, this.db != undefined);
+Model.prototype.add = function (object, callback) {
+  //console.log(this.modelType, 'add', object, this.db != undefined);
   if (object) {
     if (this.db) {
       object = this._setObjectType(object);
-      this.db.update({ _id: object._id }, object, { upsert: true }, function (err, numUpdated, object) {
+      this.db.insert(object, function (err, object) {
+        if (callback) {
+          callback(err, object);
+        } else if (err) { throw err; }
+      });
+    } else {
+      if (callback) { callback('No Datastore configured!'); }
+      else { throw 'No Datastore configured!'; }
+    }
+  }
+};
+
+Model.prototype.update = function (object, callback) {
+  //console.log(this.modelType, 'update', object, this.db != undefined);
+  if (object) {
+    if (this.db) {
+      object = this._setObjectType(object);
+      this.db.update({ _id: object._id }, object, {}, function (err, numUpdated, object) {
         if (callback) {
           callback(err, object, numUpdated);
         } else if (err) { throw err; }
