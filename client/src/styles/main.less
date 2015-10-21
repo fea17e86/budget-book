@@ -1,0 +1,50 @@
+@charset 'utf-8';
+
+// ## Variables
+// Global variables are defined in /src/styles/main.variables.
+//
+
+// ## Theme
+// Theme-related styles are specified in /src/styles/themes/main.less.
+// Any customization options are explained in more detail there.
+//
+// Note: The folders `/src/styles/site` and `/src/styles/themes` should not be
+//       renamed as their location is determinated by /theme.config as well as
+//       the structure of /node_modules/semantic-ui-less/**.
+//
+
+// ## Processing Pipeline
+// All less styles are processed with `gulp styles` or any of the depending
+// tasks including `gulp watch`. All **/main.less files are collected and concatenated
+// into a single dist/main.css file and do not need to be cross-imported from this file.
+//
+// Any file following another naming convention needs to be explicitly imported from
+// one of the main.less files using `@import 'path/to/file';`.
+//
+// During `gulp watch` reprocessing is triggered if any of the following files changes:
+// - /theme.config
+// - /src/**/*.css
+// - /src/**/*.less
+// - /src/**/*.overrides
+// - /src/**/*.variables
+//
+
+// ## CSS3 Calculation
+// All files except those used for theming are LESS-compiled in strict math and units mode.
+// For calculations to be evaluated by LESS they are required to be put in parenthesis.
+// In order to use the CSS3 <calc(...)> statement without it being processed
+// in LESS no further steps are needed for files in standard pipeline.
+//
+// On the other hand, any file referenced from ./src/styles/themes/main.less including
+// ui theming is run in non-strict math and units mode and, therefore, needs escaping
+// as explained there.
+//
+
+@import 'main.variables';
+@import 'flexboxes';
+
+#app > div,
+#app main {
+  .flex-container(column);
+  .flex-fill();
+}

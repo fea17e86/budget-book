@@ -1,0 +1,7 @@
+/*******************************
+         Site Overrides
+*******************************/
+.ui.header > .icon {
+  display: inline-block;
+  padding-top: 0;
+}

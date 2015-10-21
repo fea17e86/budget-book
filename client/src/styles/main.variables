@@ -1,0 +1,6 @@
+
+// paths relative to the generated main.css
+@base-path:  '..';
+@image-path: '@{base-path}/images';
+@font-path:  '@{base-path}/fonts';
+@app-path:   '@{base-path}/app';

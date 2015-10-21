@@ -1,0 +1,23 @@
+{
+  "optional": ["es7.asyncFunctions", "es7.classProperties"],
+  "ignore": [
+    "dist/**/*",
+    "node_modules/**/*",
+    "gulpfile.js"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "react-transform"
+      ],
+      "extra": {
+        "react-transform": {
+          "transforms": [{
+            "transform": "livereactload/babel-transform",
+            "imports": ["react"]
+          }]
+        }
+      }
+    }
+  }
+}

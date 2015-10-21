@@ -1,0 +1,6 @@
+{
+  "../node_modules/font-awesome/fonts/*.*(eot|ttf|woff|woff2|svg|otf)": "/fonts/",
+  "../node_modules/semantic-ui-less/themes/default/assets/images/*.*": "/images/",
+  "../node_modules/semantic-ui-css/semantic.js": "/scripts/",
+  "../node_modules/jquery/dist/jquery.*(map|js)": "/scripts/"
+}

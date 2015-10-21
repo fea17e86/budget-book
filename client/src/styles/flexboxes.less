@@ -1,0 +1,27 @@
+// more info on flex boxes from CSS3:
+// https://scotch.io/tutorials/a-visual-guide-to-css3-flexbox-properties
+
+.flex-container(@direction) {
+  display: flex;
+  flex-direction: @direction;
+}
+
+.flex-fill(@flex: 1) {
+  flex: @flex;
+}
+
+[flex-container] {
+  .flex-container(column);
+}
+
+[flex-container='row'] {
+  .flex-container(row);
+}
+
+[flex-initial] {
+  .flex-fill(initial);
+}
+
+[flex-fill] {
+  .flex-fill(1);
+}
