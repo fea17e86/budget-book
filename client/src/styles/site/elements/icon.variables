@@ -1,6 +1,0 @@
-/*******************************
-    User Variable Overrides
-*******************************/
-
-@fontName: 'fontawesome-webfont';
-@fallbackSRC: url("@{fontPath}/@{fontName}.eot");
