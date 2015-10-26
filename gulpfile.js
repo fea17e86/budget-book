@@ -127,16 +127,8 @@ gulp.task('scripts:watch', function() {
 gulp.task('scripts', ['scripts:watch'], bundler.stop.bind(bundler));
 
 gulp.task('server-scripts', function () {
-  var streams = [gulp.src(config.path.server + '/**/*.js')
-    .pipe(gulp.dest(config.path.dist))];
-  streams.push(gulp.src([config.path.dist + '/**/*.js', '!' + config.path.pub + '/**/*.js'])
-    .pipe(sourcemaps.init())
-      .pipe(uglify())
-      .pipe(rename({suffix: '.min'}))
-    .pipe(sourcemaps.write('./'))
-    .pipe(size({title: 'scripts', showFiles: true}))
-    .pipe(gulp.dest(config.path.dist)));
-  return es.merge(streams);
+  return gulp.src(config.path.server + '/**/*.js')
+    .pipe(gulp.dest(config.path.dist));
 });
 
 gulp.task('styles', function() {
