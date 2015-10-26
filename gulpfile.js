@@ -42,15 +42,18 @@ var assets = require('./package-assets.json'),
     cache = require('gulp-cache'),
     browserSync = require('browser-sync'),
     reload = browserSync.reload,
-    proxyMiddleware = require('http-proxy-middleware'),
     gulpif = require('gulp-if'),
-    liveReactload = require('livereactload');
+    liveReactload = require('livereactload'),
+    gexpress = require('gulp-express');
 
-var config = {};
-
-config.path = {
-  src: '.',
-  dist: '../../dist/public'
+var config = {
+  path: {
+    src: './src',
+    client: './src/client',
+    server: './src/server',
+    dist: './dist',
+    pub: './dist/public'
+  }
 };
 
 require('harmonize')();
@@ -58,7 +61,7 @@ require('harmonize')();
 //
 // Webserver with live-reload.
 //
-gulp.task('serve', function() {
+/*gulp.task('serve', function() {
 
   var serverConfig = config.server || {};
 
@@ -69,24 +72,29 @@ gulp.task('serve', function() {
       middleware: []
     }
   });
+});*/
+
+gulp.task('server', function () {
+    // Start the server at the beginning of the task
+    gexpress.run([config.path.dist + '/server.js']);
 });
 
 //
 // Bundling (scripts, styles, fonts, html, images, +).
 //
 var bundler = {
-  useReactHotDeploy: (config.watch || {}).useReactHotDeploy && process.env.NODE_ENV !== 'production',
+  useReactHotDeploy: false,
   w: null,
   init: function() {
     this.w = watchify(browserify({
-      entries: [config.path.src + '/app/app.jsx'],
+      entries: [config.path.client + '/app/app.jsx'],
       debug: true, // enable inline sourcemaps
       cache: {},
       packageCache: {},
       // Hot Reloading of React Components can be enabled via build.cfg.json
       // More info on its usage and how it works can be found at
       // > https://github.com/milankinen/livereactload#when-does-it-not-work
-      plugin: this.useReactHotDeploy ? [ liveReactload ] : [ ]
+      plugin: []
       // Mandatory transforms (e.g. babelify) are specified in package.json
       // Options for babel(ify) are specified in .babelrc
     }));
@@ -94,13 +102,12 @@ var bundler = {
   bundle: function() {
     return this.w && this.w.bundle()
         .on('error', notify.onError())
-      .pipe(source('app/app.js'))
+      .pipe(source('scripts/app.js'))
       .pipe(buffer())
       .pipe(sourcemaps.init({loadMaps: true}))
       .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest(config.path.dist))
-      .pipe(size({title: 'scripts', showFiles: true}))
-      .pipe(gulpif(!this.useReactHotDeploy, reload({stream: true})));
+      .pipe(gulp.dest(config.path.pub))
+      .pipe(size({title: 'scripts', showFiles: true}));
   },
   watch: function() {
     if (this.w) {
@@ -119,11 +126,24 @@ gulp.task('scripts:watch', function() {
 
 gulp.task('scripts', ['scripts:watch'], bundler.stop.bind(bundler));
 
+gulp.task('server-scripts', function () {
+  var streams = [gulp.src(config.path.server + '/**/*.js')
+    .pipe(gulp.dest(config.path.dist))];
+  streams.push(gulp.src([config.path.dist + '/**/*.js', '!' + config.path.pub + '/**/*.js'])
+    .pipe(sourcemaps.init())
+      .pipe(uglify())
+      .pipe(rename({suffix: '.min'}))
+    .pipe(sourcemaps.write('./'))
+    .pipe(size({title: 'scripts', showFiles: true}))
+    .pipe(gulp.dest(config.path.dist)));
+  return es.merge(streams);
+});
+
 gulp.task('styles', function() {
 
   function lessify(name, glob, options) {
     var lessOptions = Object.assign({}, {
-      paths: [ config.path.src + '/styles', './node_modules/' ]
+      paths: [ config.path.client + '/styles', './node_modules/' ]
     }, options);
     return gulp.src(glob)
         .pipe(sourcemaps.init())
@@ -132,50 +152,41 @@ gulp.task('styles', function() {
         .pipe(size({title: 'styles:' + name, showFiles: true}));
   }
 
-  var lessTheme = lessify(
-    'theme',
-    [config.path.src + '/styles/themes/main.less'],
-    { strictMath: false, strictUnits: false }
-  );
   var lessApp = lessify(
     'app',
-    [config.path.src + '/**/main.less', '!' + config.path.src + '/styles/themes/main.less'],
+    [config.path.client + '/**/main.less'],
     { strictMath: true, strictUnits: true }
   );
 
-  return es.merge(lessTheme, lessApp)
+  return es.merge(lessApp)
     //.pipe(concatCss('styles/main.css'), {rebaseUrls: false}) // no sourcemap support
     .pipe(concat('styles/main.css'))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(config.path.dist))
-    .pipe(size({title: 'styles:concat', showFiles: true}))
-    .pipe(reload({stream: true}));
+    .pipe(gulp.dest(config.path.pub))
+    .pipe(size({title: 'styles:concat', showFiles: true}));
 });
 
 gulp.task('html', function() {
-  return gulp.src(config.path.src + '/*.html')
-    .pipe(gulp.dest(config.path.dist))
-    .pipe(size({title: 'html', showFiles: true}))
-    .pipe(reload({stream: true}));
+  return gulp.src(config.path.client + '/*.html')
+    .pipe(gulp.dest(config.path.pub))
+    .pipe(size({title: 'html', showFiles: true}));
 });
 
 gulp.task('images', function() {
-  return gulp.src([config.path.src + '/**/*.*(png|jpg|gif|svg)'])
+  return gulp.src([config.path.client + '/**/*.*(png|jpg|gif|svg)'])
     .pipe(cache(imagemin({
       optimizationLevel: 3,
       progressive: true,
       interlaced: true
     })))
-    .pipe(gulp.dest(config.path.dist))
-    .pipe(size({title: 'images', showFiles: true}))
-    .pipe(reload({stream: true}));
+    .pipe(gulp.dest(config.path.pub))
+    .pipe(size({title: 'images', showFiles: true}));
 });
 
 gulp.task('fonts', function() {
-  return gulp.src([config.path.src + '/fonts/**/*.*(eot|ttf|woff|woff2|svg|otf)'])
-    .pipe(gulp.dest(config.path.dist + '/fonts'))
-    .pipe(size({title: 'fonts', showFiles: true}))
-    .pipe(reload({stream: true}));
+  return gulp.src([config.path.client + '/fonts/**/*.*(eot|ttf|woff|woff2|svg|otf)'])
+    .pipe(gulp.dest(config.path.pub + '/fonts'))
+    .pipe(size({title: 'fonts', showFiles: true}));
 });
 
 gulp.task('extras', function() {
@@ -183,16 +194,15 @@ gulp.task('extras', function() {
   function copyTask(from, to) {
     return gulp.src(from)
       .pipe(gulp.dest(to))
-      .pipe(size({title: 'extras:' + from, showFiles: true}))
-      .pipe(reload({stream: true}));
+      .pipe(size({title: 'extras:' + from, showFiles: true}));
   }
 
   var streams = [
-    copyTask(config.path.src + '/*.txt', config.path.dist),
-    copyTask(config.path.src + '/*.ico', config.path.dist)
+    copyTask(config.path.client + '/*.txt', config.path.pub),
+    copyTask(config.path.client + '/*.ico', config.path.pub)
   ];
   for (var glob in assets) {
-    var destination = config.path.dist + assets[glob];
+    var destination = config.path.pub + assets[glob];
     var stream = copyTask(glob, destination);
     streams.push(stream);
   }
@@ -249,8 +259,7 @@ gulp.task('html:production', function() {
     .pipe(replace(/<script src="(.*)\.js"><\/script>/g, '<script src="$1.min.js"></script>'))
     .pipe(replace(/<link rel="stylesheet" href="(.*)\.css"\/?>/g, '<link rel="stylesheet" href="$1.min.css">'))
     .pipe(gulp.dest(config.path.dist))
-    .pipe(size({title: 'html:production', showFiles: true}))
-    .pipe(reload({stream: true}));
+    .pipe(size({title: 'html:production', showFiles: true}));
 });
 
 //
@@ -323,7 +332,7 @@ gulp.task('set-production', function() {
   process.env.NODE_ENV = 'production';
 });
 
-gulp.task('bundle:watch', sync([['images', 'fonts', 'extras'], ['styles', 'scripts:watch'], 'html']));
+gulp.task('bundle:watch', sync([['images', 'fonts', 'extras'], ['styles', 'server-scripts', 'scripts:watch'], 'html']));
 gulp.task('clean-bundle:watch', sync([['clean', 'clear-cache'], 'lint', 'typecheck', 'test', 'bundle:watch']));
 
 
@@ -338,9 +347,9 @@ gulp.task('build', ['clean-bundle:watch'], bundler.stop.bind(bundler));
 gulp.task('build:production', sync(['set-production', 'build', 'minify', 'html:production', 'revision']));
 //or gulp.task('build:production', sync(['set-production', 'build', 'revision', 'minify', 'html:production']));
 
-gulp.task('serve:production', sync(['build:production', 'serve']));
+gulp.task('serve:production', sync(['build:production', 'server']));
 
-gulp.task('watch', sync(['clean-bundle:watch', 'serve']), function() {
+gulp.task('watch', sync(['clean-bundle:watch', 'server']), function() {
   bundler.watch();
   gulp.watch([config.path.src + '/**/*.*(jsx|js)', './.eslintrc', './gulpfile.js'], ['lint']);
   gulp.watch([config.path.src + '/*.html'], ['html']);

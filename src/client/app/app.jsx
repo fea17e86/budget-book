@@ -30,7 +30,7 @@ import { Router, Route, IndexRoute } from 'react-router';
 class App extends React.Component {
   render() {
     return (
-      <div><h3>Bufget Book</h3></div>
+      <div><h3>Budget Book</h3></div>
     );
   }
 }

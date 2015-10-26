@@ -25064,7 +25064,7 @@ var App = (function (_React$Component) {
         _react2['default'].createElement(
           'h3',
           null,
-          'Bufget Book'
+          'Budget Book'
         )
       );
     }
