@@ -31,7 +31,6 @@ class App extends React.Component {
   render() {
     return (
       <div><h3>Budget Book</h3></div>
-      <div><a href="/api/add">Test</a></div>
     );
   }
 }

@@ -1,7 +1,7 @@
 module.exports = {
   server: {
     host: 'localhost',
-    port: 9090,
+    port: 3000,
     database: {
       accounts: 'database/accounts.db',
       proxies: 'database/proxies.db',
