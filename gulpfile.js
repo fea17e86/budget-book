@@ -74,7 +74,7 @@ require('harmonize')();
   });
 });*/
 
-gulp.task('server', function () {
+gulp.task('serve', function () {
     // Start the server at the beginning of the task
     gexpress.run([config.path.dist + '/server.js']);
 });
@@ -128,7 +128,8 @@ gulp.task('scripts', ['scripts:watch'], bundler.stop.bind(bundler));
 
 gulp.task('server-scripts', function () {
   return gulp.src(config.path.server + '/**/*.js')
-    .pipe(gulp.dest(config.path.dist));
+    .pipe(gulp.dest(config.path.dist))
+    .pipe(size({title: 'server-scripts', showFiles: true}));
 });
 
 gulp.task('styles', function() {
@@ -159,7 +160,7 @@ gulp.task('styles', function() {
 });
 
 gulp.task('html', function() {
-  return gulp.src(config.path.client + '/*.html')
+  return gulp.src(config.path.client + '/**/*.html')
     .pipe(gulp.dest(config.path.pub))
     .pipe(size({title: 'html', showFiles: true}));
 });
@@ -341,14 +342,15 @@ gulp.task('build:production', sync(['set-production', 'build', 'minify', 'html:p
 
 gulp.task('serve:production', sync(['build:production', 'server']));
 
-gulp.task('watch', sync(['clean-bundle:watch', 'server']), function() {
+gulp.task('watch', sync(['clean-bundle:watch', 'serve']), function() {
   bundler.watch();
-  gulp.watch([config.path.src + '/**/*.*(jsx|js)', './.eslintrc', './gulpfile.js'], ['lint']);
-  gulp.watch([config.path.src + '/*.html'], ['html']);
-  gulp.watch(Object.keys(assets), ['extras']);
-  gulp.watch([config.path.src + '/**/*.*(less|css|overrides|variables)', './theme.config'], ['styles']);
-  gulp.watch([config.path.src + '**/*.*(png|jpg|gif|svg)'], ['images']);
-  gulp.watch([config.path.src + '/fonts/**/*'], ['fonts']);
+  gulp.watch([config.path.client + '/**/*.*(jsx|js)', './.eslintrc', './gulpfile.js'], ['lint']);
+  gulp.watch([config.path.server + '/**/*.js'], ['lint', 'server-scripts', gexpress.notify]);
+  gulp.watch([config.path.client + '/**/*.html'], ['html', gexpress.notify]);
+  gulp.watch(Object.keys(assets), ['extras', gexpress.notify]);
+  gulp.watch([config.path.src + '/**/*.*(less|css|overrides|variables)'], ['styles', gexpress.notify]);
+  gulp.watch([config.path.src + '**/*.*(png|jpg|gif|svg)'], ['images', gexpress.notify]);
+  gulp.watch([config.path.src + '/fonts/**/*'], ['fonts', gexpress.notify]);
 });
 
 gulp.task('default', ['build']);
