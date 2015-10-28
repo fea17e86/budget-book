@@ -24980,11 +24980,789 @@ module.exports = require('./lib/React');
 },{"./lib/React":114}],246:[function(require,module,exports){
 'use strict';
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouter = require('react-router');
+
+var _componentsApplicationJsx = require('./components/Application.jsx');
+
+var _componentsApplicationJsx2 = _interopRequireDefault(_componentsApplicationJsx);
+
+var _componentsSummaryJsx = require('./components/Summary.jsx');
+
+var _componentsSummaryJsx2 = _interopRequireDefault(_componentsSummaryJsx);
+
+var _componentsContainerJsx = require('./components/Container.jsx');
+
+var _componentsContainerJsx2 = _interopRequireDefault(_componentsContainerJsx);
+
+var _componentsUsersUserListJsx = require('./components/users/UserList.jsx');
+
+var _componentsUsersUserListJsx2 = _interopRequireDefault(_componentsUsersUserListJsx);
+
+var _componentsUsersUserFormJsx = require('./components/users/UserForm.jsx');
+
+var _componentsUsersUserFormJsx2 = _interopRequireDefault(_componentsUsersUserFormJsx);
+
+var _componentsAccountsAccountListJsx = require('./components/accounts/AccountList.jsx');
+
+var _componentsAccountsAccountListJsx2 = _interopRequireDefault(_componentsAccountsAccountListJsx);
+
+var _componentsTransactionsTransactionListJsx = require('./components/transactions/TransactionList.jsx');
+
+var _componentsTransactionsTransactionListJsx2 = _interopRequireDefault(_componentsTransactionsTransactionListJsx);
+
+var _componentsReportsReportListJsx = require('./components/reports/ReportList.jsx');
+
+var _componentsReportsReportListJsx2 = _interopRequireDefault(_componentsReportsReportListJsx);
+
+_reactDom2['default'].render(_react2['default'].createElement(
+  _reactRouter.Router,
+  null,
+  _react2['default'].createElement(
+    _reactRouter.Route,
+    { path: '/', component: _componentsApplicationJsx2['default'] },
+    _react2['default'].createElement(_reactRouter.IndexRoute, { component: _componentsSummaryJsx2['default'] }),
+    _react2['default'].createElement(
+      _reactRouter.Route,
+      { path: 'users', component: _componentsContainerJsx2['default'] },
+      _react2['default'].createElement(_reactRouter.IndexRoute, { component: _componentsUsersUserListJsx2['default'] }),
+      _react2['default'].createElement(_reactRouter.Route, { path: 'new', component: _componentsUsersUserFormJsx2['default'] }),
+      _react2['default'].createElement(_reactRouter.Route, { path: 'edit', component: _componentsUsersUserFormJsx2['default'] })
+    ),
+    _react2['default'].createElement(
+      _reactRouter.Route,
+      { path: 'accounts', component: _componentsContainerJsx2['default'] },
+      _react2['default'].createElement(_reactRouter.IndexRoute, { component: _componentsAccountsAccountListJsx2['default'] })
+    ),
+    _react2['default'].createElement(
+      _reactRouter.Route,
+      { path: 'transactions', component: _componentsContainerJsx2['default'] },
+      _react2['default'].createElement(_reactRouter.IndexRoute, { component: _componentsTransactionsTransactionListJsx2['default'] })
+    ),
+    _react2['default'].createElement(
+      _reactRouter.Route,
+      { path: 'reports', component: _componentsContainerJsx2['default'] },
+      _react2['default'].createElement(_reactRouter.IndexRoute, { component: _componentsReportsReportListJsx2['default'] })
+    )
+  )
+), document.getElementById('app'));
+
+},{"./components/Application.jsx":247,"./components/Container.jsx":248,"./components/Summary.jsx":251,"./components/accounts/AccountList.jsx":252,"./components/reports/ReportList.jsx":253,"./components/transactions/TransactionList.jsx":254,"./components/users/UserForm.jsx":255,"./components/users/UserList.jsx":256,"react":245,"react-dom":38,"react-router":64}],247:[function(require,module,exports){
+'use strict';
+
 var _livereactloadBabelTransform2 = require('livereactload/babel-transform');
 
 var _livereactloadBabelTransform3 = _interopRequireDefault(_livereactloadBabelTransform2);
 
 var _react = require('react');
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react2 = _interopRequireDefault(_react);
+
+var _NavigationJsx = require('./Navigation.jsx');
+
+var _NavigationJsx2 = _interopRequireDefault(_NavigationJsx);
+
+var _LayoutJsx = require('./Layout.jsx');
+
+var _LayoutJsx2 = _interopRequireDefault(_LayoutJsx);
+
+var _components = {
+  _$Application: {
+    displayName: 'Application'
+  }
+};
+
+var _reactComponentWrapper = (0, _livereactloadBabelTransform3['default'])({
+  filename: 'C:/Workspace/fea17e86/budget-book/src/client/app/components/Application.jsx',
+  components: _components,
+  locals: [],
+  imports: [_react]
+});
+
+function _wrapComponent(uniqueId) {
+  return function (ReactClass) {
+    return _reactComponentWrapper(ReactClass, uniqueId);
+  };
+}
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var Application = (function (_React$Component) {
+  _inherits(Application, _React$Component);
+
+  function Application() {
+    _classCallCheck(this, _Application);
+
+    _get(Object.getPrototypeOf(_Application.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(Application, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'div',
+        null,
+        _react2['default'].createElement(_NavigationJsx2['default'], { selection: this.props.routes.length > 1 ? this.props.routes[1].path : '' }),
+        _react2['default'].createElement(
+          _LayoutJsx2['default'],
+          { selection: this.props.routes.length > 1 ? this.props.routes[1].path : '' },
+          this.props.children
+        )
+      );
+    }
+  }]);
+
+  var _Application = Application;
+  Application = _wrapComponent('_$Application')(Application) || Application;
+  return Application;
+})(_react2['default'].Component);
+
+exports['default'] = Application;
+module.exports = exports['default'];
+
+},{"./Layout.jsx":249,"./Navigation.jsx":250,"livereactload/babel-transform":2,"react":245}],248:[function(require,module,exports){
+'use strict';
+
+var _livereactloadBabelTransform2 = require('livereactload/babel-transform');
+
+var _livereactloadBabelTransform3 = _interopRequireDefault(_livereactloadBabelTransform2);
+
+var _react = require('react');
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react2 = _interopRequireDefault(_react);
+
+var _components = {
+  _$Container: {
+    displayName: 'Container'
+  }
+};
+
+var _reactComponentWrapper = (0, _livereactloadBabelTransform3['default'])({
+  filename: 'C:/Workspace/fea17e86/budget-book/src/client/app/components/Container.jsx',
+  components: _components,
+  locals: [],
+  imports: [_react]
+});
+
+function _wrapComponent(uniqueId) {
+  return function (ReactClass) {
+    return _reactComponentWrapper(ReactClass, uniqueId);
+  };
+}
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var Container = (function (_React$Component) {
+  _inherits(Container, _React$Component);
+
+  function Container() {
+    _classCallCheck(this, _Container);
+
+    _get(Object.getPrototypeOf(_Container.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(Container, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'div',
+        null,
+        this.props.children
+      );
+    }
+  }]);
+
+  var _Container = Container;
+  Container = _wrapComponent('_$Container')(Container) || Container;
+  return Container;
+})(_react2['default'].Component);
+
+exports['default'] = Container;
+module.exports = exports['default'];
+
+},{"livereactload/babel-transform":2,"react":245}],249:[function(require,module,exports){
+'use strict';
+
+var _livereactloadBabelTransform2 = require('livereactload/babel-transform');
+
+var _livereactloadBabelTransform3 = _interopRequireDefault(_livereactloadBabelTransform2);
+
+var _react = require('react');
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react2 = _interopRequireDefault(_react);
+
+var _components = {
+  _$Layout: {
+    displayName: 'Layout'
+  }
+};
+
+var _reactComponentWrapper = (0, _livereactloadBabelTransform3['default'])({
+  filename: 'C:/Workspace/fea17e86/budget-book/src/client/app/components/Layout.jsx',
+  components: _components,
+  locals: [],
+  imports: [_react]
+});
+
+function _wrapComponent(uniqueId) {
+  return function (ReactClass) {
+    return _reactComponentWrapper(ReactClass, uniqueId);
+  };
+}
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var Layout = (function (_React$Component) {
+  _inherits(Layout, _React$Component);
+
+  function Layout() {
+    _classCallCheck(this, _Layout);
+
+    _get(Object.getPrototypeOf(_Layout.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(Layout, [{
+    key: 'render',
+    value: function render() {
+
+      return _react2['default'].createElement(
+        'div',
+        { id: 'main_content', className: 'container-fluid' },
+        _react2['default'].createElement(
+          'div',
+          { className: 'row' },
+          _react2['default'].createElement(
+            'div',
+            { className: 'col-sm-12 col-md-12 main' },
+            _react2['default'].createElement(
+              'h1',
+              { className: 'page-header' },
+              this.props.upperCase(this.props.selection)
+            )
+          )
+        ),
+        this.props.children
+      );
+    }
+  }], [{
+    key: 'defaultProps',
+    value: {
+      upperCase: function upperCase(str) {
+        return str ? str.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+          return letter.toUpperCase();
+        }) : 'Home';
+      }
+    },
+    enumerable: true
+  }]);
+
+  var _Layout = Layout;
+  Layout = _wrapComponent('_$Layout')(Layout) || Layout;
+  return Layout;
+})(_react2['default'].Component);
+
+exports['default'] = Layout;
+module.exports = exports['default'];
+
+},{"livereactload/babel-transform":2,"react":245}],250:[function(require,module,exports){
+'use strict';
+
+var _livereactloadBabelTransform2 = require('livereactload/babel-transform');
+
+var _livereactloadBabelTransform3 = _interopRequireDefault(_livereactloadBabelTransform2);
+
+var _react = require('react');
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+var _components = {
+  _$Navigation: {
+    displayName: 'Navigation'
+  }
+};
+
+var _reactComponentWrapper = (0, _livereactloadBabelTransform3['default'])({
+  filename: 'C:/Workspace/fea17e86/budget-book/src/client/app/components/Navigation.jsx',
+  components: _components,
+  locals: [],
+  imports: [_react]
+});
+
+function _wrapComponent(uniqueId) {
+  return function (ReactClass) {
+    return _reactComponentWrapper(ReactClass, uniqueId);
+  };
+}
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var Navigation = (function (_React$Component) {
+  _inherits(Navigation, _React$Component);
+
+  function Navigation() {
+    _classCallCheck(this, _Navigation);
+
+    _get(Object.getPrototypeOf(_Navigation.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(Navigation, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'nav',
+        { className: 'navbar navbar-inverse navbar-fixed-top' },
+        _react2['default'].createElement(
+          'div',
+          { className: 'container' },
+          _react2['default'].createElement(
+            'div',
+            { className: 'navbar-header' },
+            _react2['default'].createElement(
+              'button',
+              { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#navbar', 'aria-expanded': 'false', 'aria-controls': 'navbar' },
+              _react2['default'].createElement(
+                'span',
+                { className: 'sr-only' },
+                'Toggle navigation'
+              ),
+              _react2['default'].createElement('span', { className: 'icon-bar' }),
+              _react2['default'].createElement('span', { className: 'icon-bar' }),
+              _react2['default'].createElement('span', { className: 'icon-bar' })
+            ),
+            _react2['default'].createElement(
+              'a',
+              { className: 'navbar-brand', href: '/' },
+              'Budget Book'
+            )
+          ),
+          _react2['default'].createElement(
+            'div',
+            { id: 'navbar', className: 'collapse navbar-collapse' },
+            _react2['default'].createElement(
+              'ul',
+              { className: 'nav navbar-nav' },
+              _react2['default'].createElement(
+                'li',
+                { className: '' },
+                _react2['default'].createElement(
+                  _reactRouter.Link,
+                  { to: '/users' },
+                  'Users'
+                )
+              ),
+              _react2['default'].createElement(
+                'li',
+                { className: '' },
+                _react2['default'].createElement(
+                  _reactRouter.Link,
+                  { to: '/accounts' },
+                  'Accounts'
+                )
+              ),
+              _react2['default'].createElement(
+                'li',
+                { className: '' },
+                _react2['default'].createElement(
+                  _reactRouter.Link,
+                  { to: '/transactions' },
+                  'Transactions'
+                )
+              ),
+              _react2['default'].createElement(
+                'li',
+                { className: '' },
+                _react2['default'].createElement(
+                  _reactRouter.Link,
+                  { to: '/reports' },
+                  'Reports'
+                )
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  var _Navigation = Navigation;
+  Navigation = _wrapComponent('_$Navigation')(Navigation) || Navigation;
+  return Navigation;
+})(_react2['default'].Component);
+
+exports['default'] = Navigation;
+module.exports = exports['default'];
+
+},{"livereactload/babel-transform":2,"react":245,"react-router":64}],251:[function(require,module,exports){
+'use strict';
+
+var _livereactloadBabelTransform2 = require('livereactload/babel-transform');
+
+var _livereactloadBabelTransform3 = _interopRequireDefault(_livereactloadBabelTransform2);
+
+var _react = require('react');
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react2 = _interopRequireDefault(_react);
+
+var _components = {
+  _$Summary: {
+    displayName: 'Summary'
+  }
+};
+
+var _reactComponentWrapper = (0, _livereactloadBabelTransform3['default'])({
+  filename: 'C:/Workspace/fea17e86/budget-book/src/client/app/components/Summary.jsx',
+  components: _components,
+  locals: [],
+  imports: [_react]
+});
+
+function _wrapComponent(uniqueId) {
+  return function (ReactClass) {
+    return _reactComponentWrapper(ReactClass, uniqueId);
+  };
+}
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var Summary = (function (_React$Component) {
+  _inherits(Summary, _React$Component);
+
+  function Summary() {
+    _classCallCheck(this, _Summary);
+
+    _get(Object.getPrototypeOf(_Summary.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(Summary, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'h3',
+        null,
+        'Summary'
+      );
+    }
+  }]);
+
+  var _Summary = Summary;
+  Summary = _wrapComponent('_$Summary')(Summary) || Summary;
+  return Summary;
+})(_react2['default'].Component);
+
+exports['default'] = Summary;
+module.exports = exports['default'];
+
+},{"livereactload/babel-transform":2,"react":245}],252:[function(require,module,exports){
+'use strict';
+
+var _livereactloadBabelTransform2 = require('livereactload/babel-transform');
+
+var _livereactloadBabelTransform3 = _interopRequireDefault(_livereactloadBabelTransform2);
+
+var _react = require('react');
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react2 = _interopRequireDefault(_react);
+
+var _components = {
+  _$AccountList: {
+    displayName: 'AccountList'
+  }
+};
+
+var _reactComponentWrapper = (0, _livereactloadBabelTransform3['default'])({
+  filename: 'C:/Workspace/fea17e86/budget-book/src/client/app/components/accounts/AccountList.jsx',
+  components: _components,
+  locals: [],
+  imports: [_react]
+});
+
+function _wrapComponent(uniqueId) {
+  return function (ReactClass) {
+    return _reactComponentWrapper(ReactClass, uniqueId);
+  };
+}
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var AccountList = (function (_React$Component) {
+  _inherits(AccountList, _React$Component);
+
+  function AccountList() {
+    _classCallCheck(this, _AccountList);
+
+    _get(Object.getPrototypeOf(_AccountList.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(AccountList, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'ul',
+        null,
+        _react2['default'].createElement(
+          'li',
+          null,
+          'Account List'
+        )
+      );
+    }
+  }]);
+
+  var _AccountList = AccountList;
+  AccountList = _wrapComponent('_$AccountList')(AccountList) || AccountList;
+  return AccountList;
+})(_react2['default'].Component);
+
+exports['default'] = AccountList;
+module.exports = exports['default'];
+
+},{"livereactload/babel-transform":2,"react":245}],253:[function(require,module,exports){
+'use strict';
+
+var _livereactloadBabelTransform2 = require('livereactload/babel-transform');
+
+var _livereactloadBabelTransform3 = _interopRequireDefault(_livereactloadBabelTransform2);
+
+var _react = require('react');
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react2 = _interopRequireDefault(_react);
+
+var _components = {
+  _$ReportList: {
+    displayName: 'ReportList'
+  }
+};
+
+var _reactComponentWrapper = (0, _livereactloadBabelTransform3['default'])({
+  filename: 'C:/Workspace/fea17e86/budget-book/src/client/app/components/reports/ReportList.jsx',
+  components: _components,
+  locals: [],
+  imports: [_react]
+});
+
+function _wrapComponent(uniqueId) {
+  return function (ReactClass) {
+    return _reactComponentWrapper(ReactClass, uniqueId);
+  };
+}
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var ReportList = (function (_React$Component) {
+  _inherits(ReportList, _React$Component);
+
+  function ReportList() {
+    _classCallCheck(this, _ReportList);
+
+    _get(Object.getPrototypeOf(_ReportList.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(ReportList, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'ul',
+        null,
+        _react2['default'].createElement(
+          'li',
+          null,
+          'Report List'
+        )
+      );
+    }
+  }]);
+
+  var _ReportList = ReportList;
+  ReportList = _wrapComponent('_$ReportList')(ReportList) || ReportList;
+  return ReportList;
+})(_react2['default'].Component);
+
+exports['default'] = ReportList;
+module.exports = exports['default'];
+
+},{"livereactload/babel-transform":2,"react":245}],254:[function(require,module,exports){
+'use strict';
+
+var _livereactloadBabelTransform2 = require('livereactload/babel-transform');
+
+var _livereactloadBabelTransform3 = _interopRequireDefault(_livereactloadBabelTransform2);
+
+var _react = require('react');
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react2 = _interopRequireDefault(_react);
+
+var _components = {
+  _$TransactionList: {
+    displayName: 'TransactionList'
+  }
+};
+
+var _reactComponentWrapper = (0, _livereactloadBabelTransform3['default'])({
+  filename: 'C:/Workspace/fea17e86/budget-book/src/client/app/components/transactions/TransactionList.jsx',
+  components: _components,
+  locals: [],
+  imports: [_react]
+});
+
+function _wrapComponent(uniqueId) {
+  return function (ReactClass) {
+    return _reactComponentWrapper(ReactClass, uniqueId);
+  };
+}
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var TransactionList = (function (_React$Component) {
+  _inherits(TransactionList, _React$Component);
+
+  function TransactionList() {
+    _classCallCheck(this, _TransactionList);
+
+    _get(Object.getPrototypeOf(_TransactionList.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(TransactionList, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'ul',
+        null,
+        _react2['default'].createElement(
+          'li',
+          null,
+          'Transaction List'
+        )
+      );
+    }
+  }]);
+
+  var _TransactionList = TransactionList;
+  TransactionList = _wrapComponent('_$TransactionList')(TransactionList) || TransactionList;
+  return TransactionList;
+})(_react2['default'].Component);
+
+exports['default'] = TransactionList;
+module.exports = exports['default'];
+
+},{"livereactload/babel-transform":2,"react":245}],255:[function(require,module,exports){
+'use strict';
+
+var _livereactloadBabelTransform2 = require('livereactload/babel-transform');
+
+var _livereactloadBabelTransform3 = _interopRequireDefault(_livereactloadBabelTransform2);
+
+var _react = require('react');
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
@@ -25002,37 +25780,14 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _reactRouter = require('react-router');
 
-//
-// React Resources
-// - https://facebook.github.io/react/docs/tutorial.html
-// - https://facebook.github.io/react/docs/reusable-components.html
-// - https://facebook.github.io/react/docs/top-level-api.html
-//
-// Alternativen zu JSX
-// - https://github.com/mlmorg/react-hyperscript
-//
-// ES6 + React -- sehr lesenswert
-// - http://babeljs.io/blog/2015/06/07/react-on-es6-plus/
-//
-// Future of React
-// - https://quip.com/uJQeABv7nkFN
-//
-// Flow: Static Typing in JavaScript
-// - :( not yet on Windows => https://github.com/facebook/flow/issues/6
-// - http://flowtype.org/
-//
-// Immutable.js
-// - https://facebook.github.io/immutable-js/
-//
-
 var _components = {
-  _$App: {
-    displayName: 'App'
+  _$UserForm: {
+    displayName: 'UserForm'
   }
 };
 
 var _reactComponentWrapper = (0, _livereactloadBabelTransform3['default'])({
-  filename: 'C:/Workspace/fea17e86/budget-book/src/client/app/app.jsx',
+  filename: 'C:/Workspace/fea17e86/budget-book/src/client/app/components/users/UserForm.jsx',
   components: _components,
   locals: [],
   imports: [_react]
@@ -25046,42 +25801,144 @@ function _wrapComponent(uniqueId) {
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var App = (function (_React$Component) {
-  _inherits(App, _React$Component);
+var UserForm = (function (_React$Component) {
+  _inherits(UserForm, _React$Component);
 
-  function App() {
-    _classCallCheck(this, _App);
+  function UserForm() {
+    _classCallCheck(this, _UserForm);
 
-    _get(Object.getPrototypeOf(_App.prototype), 'constructor', this).apply(this, arguments);
+    _get(Object.getPrototypeOf(_UserForm.prototype), 'constructor', this).apply(this, arguments);
   }
 
-  _createClass(App, [{
+  _createClass(UserForm, [{
+    key: 'handleDelete',
+    value: function handleDelete() {
+      var id = this.refs.id.value();
+      this.props.onDelete({ id: id });
+    }
+  }, {
+    key: 'handleSubmit',
+    value: function handleSubmit() {
+      var id = this.refs.id.value();
+      var name = this.refs.name.value().trim();
+      this.props.onSubmit({ id: id, name: name });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2['default'].createElement(
-        'div',
+        'form',
         null,
+        _react2['default'].createElement('input', { type: 'hidden', name: 'id', value: '' }),
         _react2['default'].createElement(
-          'h3',
-          null,
-          'Budget Book'
+          'div',
+          { className: 'form-group' },
+          _react2['default'].createElement(
+            'label',
+            { htmlFor: 'inputName' },
+            'Name'
+          ),
+          _react2['default'].createElement('input', { type: 'text', name: 'name', className: 'form-control', id: 'inputName', placeholder: 'Name', value: '' })
+        ),
+        _react2['default'].createElement(
+          'button',
+          { type: 'button', className: 'btn btn-default', onclick: this.handleSubmit },
+          'Submit'
+        ),
+        _react2['default'].createElement(
+          'button',
+          { type: 'button', className: 'btn btn-danger', onclick: this.handleDelete },
+          'Delete'
         )
       );
     }
   }]);
 
-  var _App = App;
-  App = _wrapComponent('_$App')(App) || App;
-  return App;
+  var _UserForm = UserForm;
+  UserForm = _wrapComponent('_$UserForm')(UserForm) || UserForm;
+  return UserForm;
 })(_react2['default'].Component);
 
-_reactDom2['default'].render(_react2['default'].createElement(
-  _reactRouter.Router,
-  null,
-  _react2['default'].createElement(_reactRouter.Route, { path: '/', component: App })
-), document.getElementById('app'));
+exports['default'] = UserForm;
+module.exports = exports['default'];
 
-},{"livereactload/babel-transform":2,"react":245,"react-dom":38,"react-router":64}]},{},[246])
+},{"livereactload/babel-transform":2,"react":245,"react-dom":38,"react-router":64}],256:[function(require,module,exports){
+'use strict';
+
+var _livereactloadBabelTransform2 = require('livereactload/babel-transform');
+
+var _livereactloadBabelTransform3 = _interopRequireDefault(_livereactloadBabelTransform2);
+
+var _react = require('react');
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react2 = _interopRequireDefault(_react);
+
+var _components = {
+  _$UserList: {
+    displayName: 'UserList'
+  }
+};
+
+var _reactComponentWrapper = (0, _livereactloadBabelTransform3['default'])({
+  filename: 'C:/Workspace/fea17e86/budget-book/src/client/app/components/users/UserList.jsx',
+  components: _components,
+  locals: [],
+  imports: [_react]
+});
+
+function _wrapComponent(uniqueId) {
+  return function (ReactClass) {
+    return _reactComponentWrapper(ReactClass, uniqueId);
+  };
+}
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var UserList = (function (_React$Component) {
+  _inherits(UserList, _React$Component);
+
+  function UserList() {
+    _classCallCheck(this, _UserList);
+
+    _get(Object.getPrototypeOf(_UserList.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(UserList, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'ul',
+        null,
+        _react2['default'].createElement(
+          'li',
+          null,
+          'User List'
+        )
+      );
+    }
+  }]);
+
+  var _UserList = UserList;
+  UserList = _wrapComponent('_$UserList')(UserList) || UserList;
+  return UserList;
+})(_react2['default'].Component);
+
+exports['default'] = UserList;
+module.exports = exports['default'];
+
+},{"livereactload/babel-transform":2,"react":245}]},{},[246])
 
 
 //# sourceMappingURL=app.js.map

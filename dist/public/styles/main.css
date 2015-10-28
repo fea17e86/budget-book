@@ -2060,5 +2060,8 @@
       -ms-flex: 1;
           flex: 1;
 }
+#app #main_content {
+  margin-top: 60px;
+}
 
 /*# sourceMappingURL=main.css.map */
