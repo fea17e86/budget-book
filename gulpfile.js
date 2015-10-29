@@ -87,7 +87,7 @@ var bundler = {
   w: null,
   init: function() {
     this.w = watchify(browserify({
-      entries: [config.path.client + '/app/app.jsx'],
+      entries: [config.path.client + '/app/index.jsx'],
       debug: true, // enable inline sourcemaps
       cache: {},
       packageCache: {},

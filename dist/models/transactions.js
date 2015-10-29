@@ -16,10 +16,10 @@
  *  _id         : String (nedb)
  */
 
-var config = require('../config'),
+var config = require('../config.js'),
     Model = require('../model.js');
 
-var Transactions = new Model('transaction', config.database.transactions);
+var Transactions = new Model('transaction', config.server.database.transactions);
 
 Transactions.type = {
   deposit: 'deposit',

@@ -6,11 +6,11 @@
  *  _id   : String (nedb)
  */
 
-var config = require('../config'),
+var config = require('../config.js'),
     Model = require('../model.js'),
     Accounts = require('./accounts.js');
 
-var Users = new Model('user', config.database.users);
+var Users = new Model('user', config.server.database.users);
 
 Users.accounts = function (user, callback) {
   if (user) {

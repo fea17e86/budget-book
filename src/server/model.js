@@ -29,16 +29,13 @@ Model.prototype.init = function (dbUrl) {
   }
 };
 
+// callback: function (err, entity)
 Model.prototype.add = function (object, callback) {
   //console.log(this.modelType, 'add', object, this.db != undefined);
   if (object) {
     if (this.db) {
       object = this._setObjectType(object);
-      this.db.insert(object, function (err, object) {
-        if (callback) {
-          callback(err, object);
-        } else if (err) { throw err; }
-      });
+      this.db.insert(object, callback);
     } else {
       if (callback) { callback('No Datastore configured!'); }
       else { throw 'No Datastore configured!'; }
@@ -46,16 +43,13 @@ Model.prototype.add = function (object, callback) {
   }
 };
 
+// callback: function (err, numUpdated)
 Model.prototype.update = function (object, callback) {
   //console.log(this.modelType, 'update', object, this.db != undefined);
   if (object) {
     if (this.db) {
       object = this._setObjectType(object);
-      this.db.update({ _id: object._id }, object, {}, function (err, numUpdated, object) {
-        if (callback) {
-          callback(err, object, numUpdated);
-        } else if (err) { throw err; }
-      });
+      this.db.update({ _id: object._id }, object, {}, callback);
     } else {
       if (callback) { callback('No Datastore configured!'); }
       else { throw 'No Datastore configured!'; }
@@ -63,14 +57,16 @@ Model.prototype.update = function (object, callback) {
   }
 };
 
+// callback: function (err, entities)
 Model.prototype.list = function (callback) {
   this.get({}, callback);
 };
 
+// callback: function (err, entity/entities)
 Model.prototype.get = function (params, callback) {
   //console.log(this.modelType, 'get', params, this.db != undefined);
   if (this.db) {
-    params = _.extend({ _type: this.modelType }, params );
+    params = _.extend({ _type: this.modelType }, params);
     this.db.find(params, callback);
   } else {
     if (callback) { callback('No Datastore configured!'); }
@@ -78,6 +74,7 @@ Model.prototype.get = function (params, callback) {
   }
 };
 
+// callback: function (err, numRemoved)
 Model.prototype.remove = function (object, callback) {
   //console.log(this.modelType, 'remove', object, this.db != undefined);
   if (object) {

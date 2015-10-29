@@ -9,11 +9,11 @@
  *  _id     : String (nedb)
  */
 
-var config = require('../config'),
+var config = require('../config.js'),
     Model = require('../model.js'),
     Transactions = require('./transactions.js');
 
-var Accounts = new Model('account', config.database.accounts);
+var Accounts = new Model('account', config.server.database.accounts);
 
 Accounts.type = {
   bank: 'bank',

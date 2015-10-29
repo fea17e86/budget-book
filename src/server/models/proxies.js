@@ -6,11 +6,11 @@
  *  _id   : String (nedb)
  */
 
-var config = require('../config'),
+var config = require('../config.js'),
     Model = require('../model.js'),
     Transactions = require('./transactions.js');
 
-var Proxies = new Model('proxy', config.database.proxies);
+var Proxies = new Model('proxy', config.server.database.proxies);
 
 Proxies.transactions = function (proxy, callback) {
   if (proxy) {
